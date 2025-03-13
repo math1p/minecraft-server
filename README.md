@@ -189,7 +189,7 @@ Configurar o arquivo [server.properties](https://minecraft.fandom.com/pt/wiki/Se
 
 Edite o arquivo `server.properties` para configurar as definições do servidor do Minecraft e do mundo, como nome e etc. Leia sobre ele em: https://minecraft.fandom.com/pt/wiki/Server.properties
 
-Antes de começar a jogar, baixe o "screen" com o seguinte comando: `sudo apt install screen`. Ele vai ser útil para alternar entre as telas.
+Antes de começar a jogar, baixe o "screen" (acredito que já esteja instalado por padrão) com o seguinte comando: `sudo apt install screen`. Ele vai ser útil para alternar entre as telas.
 
 Com tudo configurado, digite `screen -S minecraft_server` ou qualquer nome que quiser para criar uma sessão para o servidor, assim não será necessário encerrá-lo para faazer outras coisas. Isso também evita que ele fique "perdido" caso você reinicie a conexão SSH.
 
