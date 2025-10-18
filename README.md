@@ -237,3 +237,5 @@ Executar o servidor:
 (Bedrock) `./(nome-do-arquivo)` -> Provavelmente `./bedrock-server` no diretório em que foi instalado.
 
 Futuramente devo incluir scripts de automação para que o não seja necessário executar o servidor com tantos comandos. Além disso, devo incluir um script de backup e um para verificar se ainda há players online.
+
+Como o processador disponibilizado pela Oracle não é x64 (é arm), o Minecraft Bedrock precisa de alguns ajustes para funcionar.
