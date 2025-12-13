@@ -238,8 +238,10 @@ Executar o servidor:
 
 Futuramente devo incluir scripts de automação para que o não seja necessário executar o servidor com tantos comandos. Além disso, devo incluir um script de backup e um para verificar se ainda há players online.
 
-Como o processador disponibilizado pela Oracle não é x64 (é arm), o Minecraft Bedrock precisa de alguns ajustes para funcionar.
+Como o processador disponibilizado pela Oracle não é x64 (é arm), o Minecraft Bedrock precisa de alguns ajustes para funcionar:
+Rode: `sudo apt update && sudo apt install box64-rpi4arm64 -y`
 
 Para atualizar o Crafty:
-veja https://docs.craftycontrol.com/pages/getting-started/installation/linux/?h=update#updating-crafty
+Veja: https://docs.craftycontrol.com/pages/getting-started/installation/linux/?h=update#updating-crafty
+
 
