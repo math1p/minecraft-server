@@ -91,7 +91,7 @@ Para fazer a conexão com a instância é possível usar o próprio Terminal do 
 > [!TIP]
 > Eu gosto bastante de usar o [Termius](https://termius.com/download/windows), a interface é bem intuitiva e, além disso, é possível usá-lo no celular.
 
-No Terminal digite `ssh -i /endereço/da/chave/privada usuário@host-ip ` 
+Caso opte pelo Terminal/CMD, digite `ssh -i /endereço/da/chave/privada usuário@host-ip ` 
 Ex.: `"C:\Users\mathe\OneDrive\Área de Trabalho\Matheus\Scripts\Ampere-VM\new-ampere-vm.key" ubuntu@168.75.73.119"` Talvez seja necessário mudar as permissões do arquivo da chave. 
 
 Obs.: (CTRL + SHIFT + C copia o enderço do arquivo).
@@ -247,4 +247,5 @@ Executar o servidor:
 (Bedrock) `./(nome-do-arquivo)` -> Provavelmente `./bedrock-server` no diretório em que foi instalado.
 
 Futuramente devo incluir scripts de automação para que o não seja necessário executar o servidor com tantos comandos. Além disso, devo incluir um script de backup e um para verificar se ainda há players online.
+
 
