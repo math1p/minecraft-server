@@ -6,11 +6,11 @@ Esse servidor é capaz de comportar um grande número de jogadores ao mesmo temp
 
 As instruções a seguir não são tão simples, mas basta segui-lás com atenção e o servidor estará pronto.
 
-Obs.: 
-Sugiro fortemente que use o Crafty Controller para gerenciar os servidores:
+Obs.:  
+Sugiro fortemente que use o Crafty Controller para gerenciar os servidores:  
 Veja: https://craftycontrol.com/
 
-Para atualizar o Crafty:
+Para atualizar o Crafty:  
 Veja: https://docs.craftycontrol.com/pages/getting-started/installation/linux/?h=update#updating-crafty
 
 Caso opte por gerenciar manualmente, as intruções para isso estão contidas nesse texto, mas entenda que não é nada prático no dia-a-dia
@@ -29,7 +29,7 @@ Agora que a conta já foi criada, na página inicial, acesse [https://cloud.orac
 
 Escolha o nome que quiser e evite modificar as outras configurações caso não saiba o que está fazendo.
 
-Vá para "Imagem e forma", clique em "Editar" e depois em "Alterar iamgem", clique em "Ubuntu" e escolha "Canonical Ubuntu 24.04" (hoje é a mais recente) e clique em "Aplicar" ( o sistema operacional precisa ser Linux, o Windows é pago). Eu prefiro o Ubuntu ao Oracle Linux, mas na prática eu acredito que não faça tanta diferença.
+Vá para "Imagem e forma", clique em "Editar" e depois em "Alterar iamgem", clique em "Ubuntu" e escolha "Canonical Ubuntu 24.04" (hoje é a mais recente) e clique em "Aplicar" (o sistema operacional precisa ser Linux, o Windows é pago). Eu prefiro o Ubuntu ao Oracle Linux, mas na prática eu acredito que não faça tanta diferença.
 
 ![alt text](image.png)
 
@@ -247,3 +247,4 @@ Executar o servidor:
 (Bedrock) `./(nome-do-arquivo)` -> Provavelmente `./bedrock-server` no diretório em que foi instalado.
 
 Futuramente devo incluir scripts de automação para que o não seja necessário executar o servidor com tantos comandos. Além disso, devo incluir um script de backup e um para verificar se ainda há players online.
+
