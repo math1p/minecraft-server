@@ -6,6 +6,15 @@ Esse servidor é capaz de comportar um grande número de jogadores ao mesmo temp
 
 As instruções a seguir não são tão simples, mas basta segui-lás com atenção e o servidor estará pronto.
 
+Obs.: 
+Sugiro fortemente que use o Crafty Controller para gerenciar os servidores:
+Veja: https://craftycontrol.com/
+
+Para atualizar o Crafty:
+Veja: https://docs.craftycontrol.com/pages/getting-started/installation/linux/?h=update#updating-crafty
+
+Caso opte por gerenciar manualmente, as intruções para isso estão contidas nesse texto, mas entenda que não é nada prático no dia-a-dia
+
 ## 1 - Criando e configurando uma instância Oracle Cloud
 
 Acesse [https://cloud.oracle.com/](https://cloud.oracle.com/) e crie uma conta Oracle Cloud clicando em "Sing Up" e seguindo as instruções.
@@ -129,24 +138,21 @@ Agora resta apenas instalar e configurar o prórprio Minecraft Server, mas antes
 `wget: Baixa arquivos da internet.`
 `Exemplo: wget URL_do_arquivo`
 
-### 2.2 - Organizando os diretórios
+### 2.2 - Criando os diretórios
 
-Sugiro organizar da seguinte maneira:
-
-`/Minecraft-Bedrock-Server` ou `/Minecraft-Java-Server`
+Sugiro organizar dessa maneira: "`/Minecraft-Bedrock-Server` ou `/Minecraft-Java-Server`", mas sinta-se livre para nomear de acordo com a sua preferência:
 
 > [!TIP]
-> Tenha certeza de que está no diretório correto, use: `cd` para garantir que está no diretório pessoal.
+> Tenha certeza de que está no diretório correto, use: `pwd` para ver em qual diretório está e `cd` para retornar ao diretório pessoal.
 
-Use: `mkdir Minecraft-Bedrock-Server` ou `mkdir Minecraft-Java-Server`
-
-O nome não faz diferença, é apenas uma forma de organizar.
+Acesse o diretório criado com `mkdir nome_escolhido`
+Ex.: `mkdir Minecraft-Bedrock-Server` ou `mkdir Minecraft-Java-Server`
 
 Crie um diretório para os backups do mundo com: `mkdir Backups`
 
-### 2.3 - Instalando o Java (somente para o Minecraft Java)
+### 2.3 - Instalando o Java (somente para o Minecraft Java) -> Pule essa etapa se pretente instalar apenas o Bedrock
 
-Primeiro atualize os pacotes com: `sudo apt update && sudo apt upgrade -y`
+Primeiro atualize os pacotes do sistema com: `sudo apt update && sudo apt upgrade -y`
 
 Agora instale o java:
 
@@ -172,10 +178,14 @@ Depois disso, basta descompactar o arquivo do servidor `unzip nome_do_arquivo` (
 
 Aceitar o EULA na versão java `sudo nano eula.txt`,
 
-Configurar o arquivo [server.properties](https://minecraft.fandom.com/pt/wiki/Server.properties) e executar com `./(nome-do-arquivo)`para o bedrock e com `java -Xmx8G -Xms2G -jar minecraft_server.(versão).jar nogui`.
+> [!Important]
+> Como o processador disponibilizado pela Oracle não é x86-64 (é arm), o Minecraft Bedrock precisa de uma camada de compatibilidade para funcionar:
+> Instale o Box64: `sudo apt update && sudo apt install box64-rpi4arm64 -y`
+
+Configurar o arquivo [server.properties](https://minecraft.fandom.com/pt/wiki/Server.properties) (serve para configurar o nome do mundo, modo de jogo, dificuldade e etc) e executar com `./(nome-do-arquivo)`para o bedrock e com `java -Xmx8G -Xms2G -jar minecraft_server.(versão).jar nogui`.
 
 > [!TIP]
-> Use `java -Xmx(máximo de memória em GB que o servidor pode usar)G - Xms(mínimo de memória em GB que o servidor pode usar)G...`
+> Use `java -Xmx(máximo de memória em GB que o servidor pode usar)G - Xms(mínimo de memória em GB que o servidor pode usar)G. Lembre-se que a memória é alocada dinâmicamente a partir do valor mínimo definido (Xms) até o valor máximo (Xmx) em GB caso use "G" ou em MB caso use "M"`
 > 
 > Ex.: `-Xmx16G - Xms1G - jar minecraft_server.(versão).jar nogui`.
 >
@@ -237,11 +247,3 @@ Executar o servidor:
 (Bedrock) `./(nome-do-arquivo)` -> Provavelmente `./bedrock-server` no diretório em que foi instalado.
 
 Futuramente devo incluir scripts de automação para que o não seja necessário executar o servidor com tantos comandos. Além disso, devo incluir um script de backup e um para verificar se ainda há players online.
-
-Como o processador disponibilizado pela Oracle não é x64 (é arm), o Minecraft Bedrock precisa de alguns ajustes para funcionar:
-Rode: `sudo apt update && sudo apt install box64-rpi4arm64 -y`
-
-Para atualizar o Crafty:
-Veja: https://docs.craftycontrol.com/pages/getting-started/installation/linux/?h=update#updating-crafty
-
-
