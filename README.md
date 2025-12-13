@@ -59,8 +59,8 @@ Agora clique em "Adicionar Eegras de Entrada" e configure da seguinte forma:
 
 | CIDR de Origem: | Protocolo IP: | Intervalo de Portas de Origem: | Intervalo de Portas de Destino:
 |-----------|-----|---------------|------------|
-| 0.0.0.0/0 | TCP | 25565 (Java) ou 19132 (Bedrock) | 25565 (Java) ou 19132 (Bedrock) |
-| 0.0.0.0/0 | UDP | 25565 (Java) ou 19132 (Bedrock) | 25565 (Java) ou 19132 (Bedrock) |
+| 0.0.0.0/0 | TCP | Todos | 25565 (Java) ou 19132 (Bedrock) |
+| 0.0.0.0/0 | UDP | Todos | 25565 (Java) ou 19132 (Bedrock) |
 
 Descrição: (Escreva o que quiser para identificar a regra)
 
@@ -80,7 +80,7 @@ Antes, verifique se a instância está em execução, caso esteja, clique em rei
 Para fazer a conexão com a instância é possível usar o próprio Terminal do Windows/Linux
 
 > [!TIP]
-> Eu acho o [Termius](https://termius.com/download/windows) muito mais simples de usar por conta da interface gráfica. ALém disso, é possível usá-lo no celular.
+> Eu gosto bastante de usar o [Termius](https://termius.com/download/windows), a interface é bem intuitiva e, além disso, é possível usá-lo no celular.
 
 No Terminal digite `ssh -i /endereço/da/chave/privada usuário@host-ip ` 
 Ex.: `"C:\Users\mathe\OneDrive\Área de Trabalho\Matheus\Scripts\Ampere-VM\new-ampere-vm.key" ubuntu@168.75.73.119"` Talvez seja necessário mudar as permissões do arquivo da chave. 
@@ -239,3 +239,7 @@ Executar o servidor:
 Futuramente devo incluir scripts de automação para que o não seja necessário executar o servidor com tantos comandos. Além disso, devo incluir um script de backup e um para verificar se ainda há players online.
 
 Como o processador disponibilizado pela Oracle não é x64 (é arm), o Minecraft Bedrock precisa de alguns ajustes para funcionar.
+
+Para atualizar o Crafty:
+veja https://docs.craftycontrol.com/pages/getting-started/installation/linux/?h=update#updating-crafty
+
