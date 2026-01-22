@@ -2,18 +2,30 @@
 
 Fiz esse tutorial apenas para tornar esse conhecimento mais acessível, não sou nenhum especiaista no assunto, mas gostaria de deixar a minha contribuição para que outros também possam jogar com os amigos sem que haja a necessidade de pagar (e caro) por isso.
 
-Esse servidor é capaz de comportar um grande número de jogadores ao mesmo tempo. Além disso, é perfeitamente possível adicionar mods (posteriormente adicionarei essa seção ao tutorial).
+Esse servidor é capaz de comportar um número razoável de jogadores ao mesmo tempo. Além disso, é perfeitamente possível adicionar mods (posteriormente adicionarei essa seção ao tutorial).
 
 As instruções a seguir não são tão simples, mas basta segui-lás com atenção e o servidor estará pronto.
 
+## Etapas:
+1 - Criar uma conta e configurar o ambiente da OCI.
+
+2 - Configurar o ambiente do SO.
+
+3 - Instalar e configurar o Servidor de Minecraft.
+
+### Saiba que há diferentes maneiras de criar/administrar um Servidor de Minecraft. Vou listar as que serão abordadas nesse tutorial:
+1 - [Crafty](https://craftycontrol.com/) - (Recomendado)
+
+2 - Instalação "crua" - (Recomendado apenas para testes rápidos)
+
 Obs.:  
-Sugiro fortemente que use o Crafty Controller para gerenciar os servidores:  
+Sugiro fortemente que use o Crafty Controller para gerenciar os servidores, pois este pode ser administrado por um painel web:  
 Veja: https://craftycontrol.com/
 
 Para atualizar o Crafty:  
 Veja: https://docs.craftycontrol.com/pages/getting-started/installation/linux/?h=update#updating-crafty
 
-Caso opte por gerenciar manualmente, as intruções para isso estão contidas nesse texto, mas entenda que não é nada prático no dia-a-dia
+Caso opte por gerenciar manualmente, as intruções para isso estão contidas nesse texto, mas entenda que não é nada prático no dia-a-dia. Se optar pelo Crafty, siga todos os passos até 2.1, a partir dali consulte o guia do próprio Crafty Controller
 
 ## 1 - Criando e configurando uma instância Oracle Cloud
 
@@ -89,7 +101,7 @@ Antes, verifique se a instância está em execução, caso esteja, clique em rei
 Para fazer a conexão com a instância é possível usar o próprio Terminal do Windows/Linux
 
 > [!TIP]
-> Eu gosto bastante de usar o [Termius](https://termius.com/download/windows), a interface é bem intuitiva e, além disso, é possível usá-lo no celular.
+> Eu gosto bastante de usar o [Termius](https://termius.com/download/windows), a interface é bem intuitiva, as chaves ficam salvas e, além disso, é possível usá-lo no celular.
 
 Caso opte pelo Terminal/CMD, digite `ssh -i /endereço/da/chave/privada usuário@host-ip ` 
 Ex.: `"C:\Users\mathe\OneDrive\Área de Trabalho\Matheus\Scripts\Ampere-VM\new-ampere-vm.key" ubuntu@168.75.73.119"` Talvez seja necessário mudar as permissões do arquivo da chave. 
@@ -138,7 +150,29 @@ Agora resta apenas instalar e configurar o prórprio Minecraft Server, mas antes
 `wget: Baixa arquivos da internet.`
 `Exemplo: wget URL_do_arquivo`
 
-### 2.2 - Criando os diretórios
+### 2.2 - Instalando os pacotes necessários
+
+Primeiro atualize os pacotes do sistema com: `sudo apt update && sudo apt upgrade -y`
+
+Agora instale o Java (somente para o Minecraft Java) -> Pule essa etapa se pretente instalar apenas o Bedrock
+
+> Minecraft 1.17 ou superior → Java 17 (recomendado)
+
+`sudo apt install openjdk-17-jdk`
+
+> Minecraft 1.16 ou inferior → Java 8 (recomendado)
+
+`sudo apt install openjdk-8-jdk`
+
+> [!Important]
+> Como o processador disponibilizado pela Oracle não é x86-64 (é arm), o Minecraft Bedrock precisa de uma camada de compatibilidade para funcionar:
+> Instale o Box64: `sudo apt update && sudo apt install box64-rpi4arm64 -y`
+
+> [!TIP]
+> Para facilitar a instalação manual, criei um script que pode agilizar o processo, o [EasyMCServer](https://github.com/math1p/EasyMCServer/releases) - Disponínivel para Windows atráves do .exe e para Linux através do PyPI.
+> Primeiro atualize o pip com `python3 -m pip install --upgrade pip`, logo em seguida instale com `pip install easymcserver` e rode com `easymc`. Depois de instalar, pule para o passo 4 e siga as instruções. Caso prefira instalar manualmente, ignore essa dica e continue seguindo as instruções
+
+### 2.3 - Criando os diretórios - (Apenas para instação manual)
 
 Sugiro organizar dessa maneira: "`/Minecraft-Bedrock-Server` ou `/Minecraft-Java-Server`", mas sinta-se livre para nomear de acordo com a sua preferência:
 
@@ -150,24 +184,10 @@ Ex.: `mkdir Minecraft-Bedrock-Server` ou `mkdir Minecraft-Java-Server`
 
 Crie um diretório para os backups do mundo com: `mkdir Backups`
 
-### 2.3 - Instalando o Java (somente para o Minecraft Java) -> Pule essa etapa se pretente instalar apenas o Bedrock
-
-Primeiro atualize os pacotes do sistema com: `sudo apt update && sudo apt upgrade -y`
-
-Agora instale o java:
-
-> Minecraft 1.17 ou superior → Java 17 (recomendado)
-
-`sudo apt install openjdk-17-jdk`
-
-> Minecraft 1.16 ou inferior → Java 8 (recomendado)
-
-`sudo apt install openjdk-8-jdk`
-
 ## 3 - Instalando o servidor de Minecraft Java/Bedrock
 
 > [!TIP]
-> Use `cd`para navegar entre os diretórios.
+> Use `cd` para navegar entre os diretórios.
 
 Para instalar o servidor, acesse [Java](https://www.minecraft.net/en-us/download/server) (apenas um link) ou [Bedrock](https://www.minecraft.net/pt-br/download/server/bedrock) (Software do servidor dedicado do Minecraft para Ubuntu (Linux)) e clique com o botão direito para copiar o link
 
@@ -177,10 +197,6 @@ Ex.: `wget https://piston-data.mojang.com/v1/objects/4707d00eb834b446575d89a61a1
 Depois disso, basta descompactar o arquivo do servidor `unzip nome_do_arquivo` (caso não esteja instalado, use `sudo apt install unzip`);
 
 Aceitar o EULA na versão java `sudo nano eula.txt`,
-
-> [!Important]
-> Como o processador disponibilizado pela Oracle não é x86-64 (é arm), o Minecraft Bedrock precisa de uma camada de compatibilidade para funcionar:
-> Instale o Box64: `sudo apt update && sudo apt install box64-rpi4arm64 -y`
 
 Configurar o arquivo [server.properties](https://minecraft.fandom.com/pt/wiki/Server.properties) (serve para configurar o nome do mundo, modo de jogo, dificuldade e etc) e executar com `./(nome-do-arquivo)`para o bedrock e com `java -Xmx8G -Xms2G -jar minecraft_server.(versão).jar nogui`.
 
@@ -197,9 +213,9 @@ Configurar o arquivo [server.properties](https://minecraft.fandom.com/pt/wiki/Se
 
 ## 4 - Configurar o servidor de Minecraft Java/Bedrock
 
-Edite o arquivo `server.properties` para configurar as definições do servidor do Minecraft e do mundo, como nome e etc. Leia sobre ele em: https://minecraft.fandom.com/pt/wiki/Server.properties
+Edite o arquivo `server.properties` com `sudo nano server.properties` no diretório da instalação para configurar as definições do servidor do Minecraft e do mundo, como nome, número de players e etc. Leia sobre ele em: https://minecraft.fandom.com/pt/wiki/Server.properties
 
-Antes de começar a jogar, baixe o "screen" (acredito que já esteja instalado por padrão) com o seguinte comando: `sudo apt install screen`. Ele vai ser útil para alternar entre as telas.
+Antes de começar a jogar, baixe o utilitário "screen" (acredito que já esteja instalado por padrão) com o seguinte comando: `sudo apt install screen`. Ele vai ser útil para alternar entre as telas.
 
 Com tudo configurado, digite `screen -S minecraft_server` ou qualquer nome que quiser para criar uma sessão para o servidor, assim não será necessário encerrá-lo para faazer outras coisas. Isso também evita que ele fique "perdido" caso você reinicie a conexão SSH.
 
@@ -247,5 +263,6 @@ Executar o servidor:
 (Bedrock) `./(nome-do-arquivo)` -> Provavelmente `./bedrock-server` no diretório em que foi instalado.
 
 Futuramente devo incluir scripts de automação para que o não seja necessário executar o servidor com tantos comandos. Além disso, devo incluir um script de backup e um para verificar se ainda há players online.
+
 
 
