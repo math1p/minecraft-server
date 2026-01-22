@@ -68,6 +68,8 @@ Por fim, clique em "Criar" para finalizra a criação da instância.
 
 Ainda no painel da Oracle, é necessário configurar as regras da rede para permitir o tráfego TCP/UDP na porta 25565 (Minecraft Java) ou 19132 (Minecraft Bedrock).
 
+Obs.: O Java usa por padrão a porta 25565 para IPv4 e protocolo TCP. Já o Bedrock usa por padrão a porta 19132 para IPv4 e protocolo UDP. Lembre-se de que a porta usada pode ser alterada no arquivo server.properties e também é necessário alterar as regras de firewall da OCI e do Linux (UFW).
+
 Ná página inicial, clique no botão de menu (3 traços) no canto superior esquerdo, vá em "Rede", depois em "Redes virtuais na nuvem". Já no painel de redes, clique na VCN disponível e na aba de "Listas de segurança" selecione a que está disponível (Default Security List for vcn-xxxxxxxx-xxxx). 
 
 Agora clique em "Adicionar Eegras de Entrada" e configure da seguinte forma:
@@ -80,8 +82,8 @@ Agora clique em "Adicionar Eegras de Entrada" e configure da seguinte forma:
 
 | CIDR de Origem: | Protocolo IP: | Intervalo de Portas de Origem: | Intervalo de Portas de Destino:
 |-----------|-----|---------------|------------|
-| 0.0.0.0/0 | TCP | Todos | 25565 (Java) ou 19132 (Bedrock) |
-| 0.0.0.0/0 | UDP | Todos | 25565 (Java) ou 19132 (Bedrock) |
+| 0.0.0.0/0 | TCP | Todos | 25565 (Java) |
+| 0.0.0.0/0 | UDP | Todos | 19132 (Bedrock) |
 
 Descrição: (Escreva o que quiser para identificar a regra)
 
@@ -163,6 +165,8 @@ Agora instale o Java (somente para o Minecraft Java) -> Pule essa etapa se prete
 > Minecraft 1.16 ou inferior → Java 8 (recomendado)
 
 `sudo apt install openjdk-8-jdk`
+
+Instale o UFW (Uncomplicated Firewall) com `sudo apt install ufw` e libere as portas 25565 para o Java e ou 19132 para o Bedrock com `sudo ufw allow 25565/tcp` e `sudo ufw allow 19132/udp`. Reinicie o firewall para aplicar as mudanças com `sudo ufw reload`. Verifique o estado do firewall com `sudo systemctl status ufw`. 
 
 > [!Important]
 > Como o processador disponibilizado pela Oracle não é x86-64 (é arm), o Minecraft Bedrock precisa de uma camada de compatibilidade para funcionar:
@@ -263,6 +267,7 @@ Executar o servidor:
 (Bedrock) `./(nome-do-arquivo)` -> Provavelmente `./bedrock-server` no diretório em que foi instalado.
 
 Futuramente devo incluir scripts de automação para que o não seja necessário executar o servidor com tantos comandos. Além disso, devo incluir um script de backup e um para verificar se ainda há players online.
+
 
 
 
