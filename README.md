@@ -266,7 +266,11 @@ Executar o servidor:
 
 (Bedrock) `./(nome-do-arquivo)` -> Provavelmente `./bedrock-server` no diretório em que foi instalado.
 
-Futuramente devo incluir scripts de automação para que o não seja necessário executar o servidor com tantos comandos. Além disso, devo incluir um script de backup e um para verificar se ainda há players online.
+Caso tenha instalado com o script que sugeri, use o executável gerado. No caso do Crafty, tudo está disponível no painel web.
+
+## Contato
+
+- Email: matheuspestana@outlook.com.br
 
 
 
