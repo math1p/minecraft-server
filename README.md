@@ -173,8 +173,11 @@ Instale o UFW (Uncomplicated Firewall) com `sudo apt install ufw` e libere as po
 > Instale o Box64: `sudo apt update && sudo apt install box64-rpi4arm64 -y`
 
 > [!TIP]
-> Para facilitar a instalação manual, criei um script que pode agilizar o processo, o [EasyMCServer](https://github.com/math1p/EasyMCServer/releases) - Disponínivel para Windows atráves do .exe e para Linux através do PyPI.
-> Primeiro atualize o pip com `python3 -m pip install --upgrade pip`, logo em seguida instale com `pip install easymcserver` e rode com `easymc`. Depois de instalar, pule para o passo 4 e siga as instruções. Caso prefira instalar manualmente, ignore essa dica e continue seguindo as instruções
+> Para facilitar a instalação manual, criei um script que agiliza o processo: o [EasyMCServer](https://github.com/math1p/EasyMCServer/releases). Ele está disponível para Windows (via .exe ou PyPI) e para Linux (via PyPI).
+
+Caso opte pelo PyPI, primeiro atualize o `pip` com `python3 -m pip install --upgrade pip`. Em seguida, instale com `pip install easymcserver` e execute `easymc`. Após a instalação, pule para o passo 4 e siga as instruções.
+
+Se preferir a instalação manual, ignore esta dica e continue seguindo as instruções.
 
 ### 2.3 - Criando os diretórios - (Apenas para instação manual)
 
@@ -271,6 +274,7 @@ Caso tenha instalado com o script que sugeri, use o executável gerado. No caso 
 ## Contato
 
 - Email: matheuspestana@outlook.com.br
+
 
 
 
