@@ -1,10 +1,10 @@
 # Servidor de Minecraft Java/Bedrock GRATUITO (Oracle Cloud)
 
-Fiz esse tutorial apenas para tornar esse conhecimento mais acessível, não sou nenhum especiaista no assunto, mas gostaria de deixar a minha contribuição para que outros também possam jogar com os amigos sem que haja a necessidade de pagar (e caro) por isso.
+Fiz esse tutorial apenas para tornar esse conhecimento mais acessível, não sou nenhum especialista no assunto, mas gostaria de deixar a minha contribuição para que outros também possam jogar com os amigos sem que haja a necessidade de pagar (e caro) por isso.
 
 Esse servidor é capaz de comportar um número razoável de jogadores ao mesmo tempo. Além disso, é perfeitamente possível adicionar mods (posteriormente adicionarei essa seção ao tutorial).
 
-As instruções a seguir não são tão simples, mas basta segui-lás com atenção e o servidor estará pronto.
+As instruções a seguir não são tão simples, mas basta segui-las com atenção e o servidor estará pronto.
 
 ## Etapas:
 1 - Criar uma conta e configurar o ambiente da OCI.
@@ -25,7 +25,7 @@ Veja: https://craftycontrol.com/
 Para atualizar o Crafty:  
 Veja: https://docs.craftycontrol.com/pages/getting-started/installation/linux/?h=update#updating-crafty
 
-Caso opte por gerenciar manualmente, as intruções para isso estão contidas nesse texto, mas entenda que não é nada prático no dia-a-dia. Se optar pelo Crafty, siga todos os passos até 2.1, a partir dali consulte o guia do próprio Crafty Controller
+Caso opte por gerenciar manualmente, as instruções para isso estão contidas nesse texto, mas entenda que não é nada prático no dia a dia. Se optar pelo Crafty, siga todos os passos até 2.1, a partir dali consulte o guia do próprio Crafty Controller
 
 ## 1 - Criando e configurando uma instância Oracle Cloud
 
@@ -33,7 +33,7 @@ Acesse [https://cloud.oracle.com/](https://cloud.oracle.com/) e crie uma conta O
 
 Para fazer login será necessário usar o app de autenticação "Oracle Mobile Authenticator".
 
-Antes de prosseguir, saiba que será necessário cadastrar um cartão de crédito (explicarei o motivo depois), mas fique tranquilo(a), se tudo for feito corretamente, não havarão cobranças.
+Antes de prosseguir, saiba que será necessário cadastrar um cartão de crédito (explicarei o motivo depois), mas fique tranquilo(a), se tudo for feito corretamente, não haverão cobranças.
 
 ### 1.1 - Criando uma instância Oracle Cloud
 
@@ -41,7 +41,7 @@ Agora que a conta já foi criada, na página inicial, acesse [https://cloud.orac
 
 Escolha o nome que quiser e evite modificar as outras configurações caso não saiba o que está fazendo.
 
-Vá para "Imagem e forma", clique em "Editar" e depois em "Alterar iamgem", clique em "Ubuntu" e escolha "Canonical Ubuntu 24.04" (hoje é a mais recente) e clique em "Aplicar" (o sistema operacional precisa ser Linux, o Windows é pago). Eu prefiro o Ubuntu ao Oracle Linux, mas na prática eu acredito que não faça tanta diferença.
+Vá para "Imagem e forma", clique em "Editar" e depois em "Alterar imagem", clique em "Ubuntu" e escolha "Canonical Ubuntu 24.04" (hoje é a mais recente) e clique em "Aplicar" (o sistema operacional precisa ser Linux, o Windows é pago). Eu prefiro o Ubuntu ao Oracle Linux, mas na prática eu acredito que não faça tanta diferença.
 
 ![alt text](image.png)
 
@@ -55,14 +55,14 @@ Vá para "Imagem e forma", clique em "Editar" e depois em "Alterar iamgem", cliq
 
 Agora é necessário baixar a chave SSH, ela será usada para fazer a conexão com o servidor. Clique em "Save private key" e cuidado para não perder esse arquivo.
 
-A útima etapa da configuração da instância será "Volume de inicialização". Por padrão o tamanho do volume é de 50GB, mas é possível alterar clicando em "Especifique um tamanho do volume de inicialização personalizado". 
+A última etapa da configuração da instância será "Volume de inicialização". Por padrão o tamanho do volume é de 50GB, mas é possível alterar clicando em "Especifique um tamanho do volume de inicialização personalizado". 
 
 > [!NOTE]
 > É possível usar até 200GB (somando todas as suas instâncias, caso tenha mais de uma) gratuitamente, por mais que apareça um valor no canto inferior direito da tela. Pode-se verificar isso na [Calculadora de Preços da Oracle Cloud](https://www.oracle.com/br/cloud/costestimator.html), onde há a seguinte afirmação:
 > 
 > ![alt text](image-1.png)
 
-Por fim, clique em "Criar" para finalizra a criação da instância.
+Por fim, clique em "Criar" para finalizar a criação da instância.
 
 ### 1.2 - Configurando a sub-rede
 
@@ -70,9 +70,9 @@ Ainda no painel da Oracle, é necessário configurar as regras da rede para perm
 
 Obs.: O Java usa por padrão a porta 25565 para IPv4 e protocolo TCP. Já o Bedrock usa por padrão a porta 19132 para IPv4 e protocolo UDP. Lembre-se de que a porta usada pode ser alterada no arquivo server.properties e também é necessário alterar as regras de firewall da OCI e do Linux (UFW).
 
-Ná página inicial, clique no botão de menu (3 traços) no canto superior esquerdo, vá em "Rede", depois em "Redes virtuais na nuvem". Já no painel de redes, clique na VCN disponível e na aba de "Listas de segurança" selecione a que está disponível (Default Security List for vcn-xxxxxxxx-xxxx). 
+Na página inicial, clique no botão de menu (3 traços) no canto superior esquerdo, vá em "Rede", depois em "Redes virtuais na nuvem". Já no painel de redes, clique na VCN disponível e na aba de "Listas de segurança" selecione a que está disponível (Default Security List for vcn-xxxxxxxx-xxxx). 
 
-Agora clique em "Adicionar Eegras de Entrada" e configure da seguinte forma:
+Agora clique em "Adicionar Regras de Entrada" e configure da seguinte forma:
 
  
 
@@ -108,11 +108,11 @@ Para fazer a conexão com a instância é possível usar o próprio Terminal do 
 Caso opte pelo Terminal/CMD, digite `ssh -i /endereço/da/chave/privada usuário@host-ip ` 
 Ex.: `"C:\Users\mathe\OneDrive\Área de Trabalho\Matheus\Scripts\Ampere-VM\new-ampere-vm.key" ubuntu@168.75.73.119"` Talvez seja necessário mudar as permissões do arquivo da chave. 
 
-Obs.: (CTRL + SHIFT + C copia o enderço do arquivo).
+Obs.: (CTRL + SHIFT + C copia o endereço do arquivo).
 
-Caso opte por usar o Termius, basta configurar um novo host incluindo o IP da instância (disnponível na página da mesma), o nome de usuário (sempre "ubuntu" para instâcncias com esse OS) e a chave SSH (abra o arquivo .key com o bloco de notas -> CTRL + A para selecionar tudo e CTRL + C para copiar -> CTRL + V para colar na aba "Key" no Termius).
+Caso opte por usar o Termius, basta configurar um novo host incluindo o IP da instância (disponível na página da mesma), o nome de usuário (sempre "ubuntu" para instâncias com esse OS) e a chave SSH (abra o arquivo .key com o bloco de notas -> CTRL + A para selecionar tudo e CTRL + C para copiar -> CTRL + V para colar na aba "Key" no Termius).
 
-Agora resta apenas instalar e configurar o prórprio Minecraft Server, mas antes disso, é interessante ter um certo conhecimento dos comandos do terminal.
+Agora resta apenas instalar e configurar o próprio Minecraft Server, mas antes disso, é interessante ter um certo conhecimento dos comandos do terminal.
 
 `ls: Lista o conteúdo de um diretório.`
 
@@ -156,7 +156,7 @@ Agora resta apenas instalar e configurar o prórprio Minecraft Server, mas antes
 
 Primeiro atualize os pacotes do sistema com: `sudo apt update && sudo apt upgrade -y`
 
-Agora instale o Java (somente para o Minecraft Java) -> Pule essa etapa se pretente instalar apenas o Bedrock
+Agora instale o Java (somente para o Minecraft Java) -> Pule essa etapa se pretende instalar apenas o Bedrock
 
 > Minecraft 1.17 ou superior → Java 17 (recomendado)
 
@@ -179,7 +179,7 @@ Caso opte pelo PyPI, primeiro atualize o `pip` com `python3 -m pip install --upg
 
 Se preferir a instalação manual, ignore esta dica e continue seguindo as instruções.
 
-### 2.3 - Criando os diretórios - (Apenas para instação manual)
+### 2.3 - Criando os diretórios - (Apenas para instalação manual)
 
 Sugiro organizar dessa maneira: "`/Minecraft-Bedrock-Server` ou `/Minecraft-Java-Server`", mas sinta-se livre para nomear de acordo com a sua preferência:
 
@@ -224,7 +224,7 @@ Edite o arquivo `server.properties` com `sudo nano server.properties` no diretó
 
 Antes de começar a jogar, baixe o utilitário "screen" (acredito que já esteja instalado por padrão) com o seguinte comando: `sudo apt install screen`. Ele vai ser útil para alternar entre as telas.
 
-Com tudo configurado, digite `screen -S minecraft_server` ou qualquer nome que quiser para criar uma sessão para o servidor, assim não será necessário encerrá-lo para faazer outras coisas. Isso também evita que ele fique "perdido" caso você reinicie a conexão SSH.
+Com tudo configurado, digite `screen -S minecraft_server` ou qualquer nome que quiser para criar uma sessão para o servidor, assim não será necessário encerrá-lo para fazer outras coisas. Isso também evita que ele fique "perdido" caso você reinicie a conexão SSH.
 
 > Lista de comandos úteis:
 > 
@@ -274,6 +274,8 @@ Caso tenha instalado com o script que sugeri, use o executável gerado. No caso 
 ## Contato
 
 - Email: matheuspestana@outlook.com.br
+
+
 
 
 
