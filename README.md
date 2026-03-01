@@ -112,9 +112,10 @@ Para fazer a conexão com a instância é possível usar o próprio Terminal do 
 Caso opte pelo Terminal/CMD, digite `ssh -i /endereço/da/chave/privada usuário@host-ip ` 
 Ex.: `"C:\Users\mathe\OneDrive\Área de Trabalho\Matheus\Scripts\Ampere-VM\new-ampere-vm.key" ubuntu@168.75.73.119"` 
 >[!TIP]
->Dicas:
 >O nome de usuário padrão é "ubuntu".
->Talvez seja necessário mudar as permissões do arquivo da chave. 
+>
+>Talvez seja necessário mudar as permissões do arquivo da chave.
+>
 >CTRL + SHIFT + C copia o endereço do arquivo no explorador de arquivos do Windows.
 
 Caso opte por usar o Termius, basta configurar um novo host incluindo o IP da instância (disponível na página da mesma), o nome de usuário (sempre "ubuntu" para instâncias com esse OS) e a chave SSH (abra o arquivo .key com o bloco de notas -> CTRL + A para selecionar tudo e CTRL + C para copiar -> CTRL + V para colar na aba "Key" no Termius).
@@ -283,6 +284,7 @@ Caso tenha instalado com o script que sugeri, use o executável gerado. No caso 
 ## Contato
 
 - Email: matheuspestana@outlook.com.br
+
 
 
 
