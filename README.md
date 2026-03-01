@@ -14,18 +14,18 @@ As instruções a seguir não são tão simples, mas basta segui-las com atenç�
 3 - Instalar e configurar o Servidor de Minecraft.
 
 ### Saiba que há diferentes maneiras de criar/administrar um Servidor de Minecraft. Vou listar as que serão abordadas nesse tutorial:
-1 - [Crafty](https://craftycontrol.com/) - (Recomendado)
+1 - [Crafty Controller](https://craftycontrol.com/) - (Recomendado)
 
 2 - Instalação "crua" - (Recomendado apenas para testes rápidos)
 
-Obs.:  
-Sugiro fortemente que use o Crafty Controller para gerenciar os servidores, pois este pode ser administrado por um painel web:  
-Veja: https://craftycontrol.com/
+> [!NOTE]
+Sugiro fortemente que use o [Crafty Controller](https://craftycontrol.com/) para gerenciar os servidores, pois há um painel web integrado para administração. 
 
-Para atualizar o Crafty:  
+> [!TIP]
+> Para atualizar o Crafty:  
 Veja: https://docs.craftycontrol.com/pages/getting-started/installation/linux/?h=update#updating-crafty
 
-Caso opte por gerenciar manualmente, as instruções para isso estão contidas nesse texto, mas entenda que não é nada prático no dia a dia. Se optar pelo Crafty, siga todos os passos até 2.1, a partir dali consulte o guia do próprio Crafty Controller
+Caso opte por gerenciar manualmente, as instruções para isso estão contidas nesse texto, mas entenda que não é nada prático no dia a dia. Se optar pelo Crafty, siga todos os passos até 2.2, a partir dali consulte o guia do próprio Crafty Controller.
 
 ## 1 - Criando e configurando uma instância Oracle Cloud
 
@@ -33,7 +33,7 @@ Acesse [https://cloud.oracle.com/](https://cloud.oracle.com/) e crie uma conta O
 
 Para fazer login será necessário usar o app de autenticação "Oracle Mobile Authenticator".
 
-Antes de prosseguir, saiba que será necessário cadastrar um cartão de crédito (explicarei o motivo depois), mas fique tranquilo(a), se tudo for feito corretamente, não haverão cobranças.
+Antes de prosseguir, saiba que será necessário cadastrar um cartão de crédito para que a opção "VM.Standard.A1.Flex" fique disponível. Mas fique tranquilo(a), se os limites dos Tier Free da OCI não forem excedidos, não haverá nenhuma cobrança.
 
 ### 1.1 - Criando uma instância Oracle Cloud
 
@@ -53,7 +53,7 @@ Vá para "Imagem e forma", clique em "Editar" e depois em "Alterar imagem", cliq
 > [!NOTE]
 > Se você não cadastrou um cartão de crédito, certamente recebeu uma mensagem avisando sobre a indisponibilidade dessa configuração.
 
-Agora é necessário baixar a chave SSH, ela será usada para fazer a conexão com o servidor. Clique em "Save private key" e cuidado para não perder esse arquivo.
+Agora é necessário baixar a chave SSH privada da instância. Ela será usada para fazer a conexão com o servidor. Clique em "Save private key" e tome cuidado para não perder esse arquivo.
 
 A última etapa da configuração da instância será "Volume de inicialização". Por padrão o tamanho do volume é de 50GB, mas é possível alterar clicando em "Especifique um tamanho do volume de inicialização personalizado". 
 
@@ -68,7 +68,8 @@ Por fim, clique em "Criar" para finalizar a criação da instância.
 
 Ainda no painel da Oracle, é necessário configurar as regras da rede para permitir o tráfego TCP/UDP na porta 25565 (Minecraft Java) ou 19132 (Minecraft Bedrock).
 
-Obs.: O Java usa por padrão a porta 25565 para IPv4 e protocolo TCP. Já o Bedrock usa por padrão a porta 19132 para IPv4 e protocolo UDP. Lembre-se de que a porta usada pode ser alterada no arquivo server.properties e também é necessário alterar as regras de firewall da OCI e do Linux (UFW).
+> [!NOTE]
+O Java usa por padrão a porta 25565 para IPv4 e protocolo TCP. Já o Bedrock usa por padrão a porta 19132 para IPv4 e protocolo UDP. Lembre-se de que a porta usada pode ser alterada no arquivo server.properties e também é necessário alterar as regras de firewall da OCI e do Linux (UFW ou iptables).
 
 Na página inicial, clique no botão de menu (3 traços) no canto superior esquerdo, vá em "Rede", depois em "Redes virtuais na nuvem". Já no painel de redes, clique na VCN disponível e na aba de "Listas de segurança" selecione a que está disponível (Default Security List for vcn-xxxxxxxx-xxxx). 
 
@@ -89,6 +90,9 @@ Descrição: (Escreva o que quiser para identificar a regra)
 
 Clique em "+ Outra Regra de Entrada" para configurar a regra para UDP. Por fim, clique em "Adicionar Regras de Entrada" para concluir.
 
+> [!important]
+> Caso esteja planejando usar o Crafty Controller, lembre-se de permitir também o tráfego TCP na porta 8443 (porta padrão do Crafty). 
+
 ## 2 - Se conectando à instância Oracle Cloud
 
 Com a instância perfeitamente configurada e as regras de rede definidas, basta se conectar usando SSH.
@@ -98,17 +102,20 @@ Antes, verifique se a instância está em execução, caso esteja, clique em rei
 > [!Important]
 > Quando for desligar uma instância, não clique em "Encerrar", isso vai deletá-la. Use "Interromper".
 
-### 2.1 - Fazendo a conexão SSH
+### 2.1 - Conexão SSH
 
 Para fazer a conexão com a instância é possível usar o próprio Terminal do Windows/Linux
 
 > [!TIP]
-> Eu gosto bastante de usar o [Termius](https://termius.com/download/windows), a interface é bem intuitiva, as chaves ficam salvas e, além disso, é possível usá-lo no celular.
+> Eu gosto bastante de usar o [Termius](https://termius.com/download/windows) pois a interface é bem intuitiva, as chaves ficam salvas e, além disso, é possível usá-lo no celular.
 
 Caso opte pelo Terminal/CMD, digite `ssh -i /endereço/da/chave/privada usuário@host-ip ` 
-Ex.: `"C:\Users\mathe\OneDrive\Área de Trabalho\Matheus\Scripts\Ampere-VM\new-ampere-vm.key" ubuntu@168.75.73.119"` Talvez seja necessário mudar as permissões do arquivo da chave. 
-
-Obs.: (CTRL + SHIFT + C copia o endereço do arquivo).
+Ex.: `"C:\Users\mathe\OneDrive\Área de Trabalho\Matheus\Scripts\Ampere-VM\new-ampere-vm.key" ubuntu@168.75.73.119"` 
+>[!TIP]
+>Dicas:
+>O nome de usuário padrão é "ubuntu".
+>Talvez seja necessário mudar as permissões do arquivo da chave. 
+>CTRL + SHIFT + C copia o endereço do arquivo no explorador de arquivos do Windows.
 
 Caso opte por usar o Termius, basta configurar um novo host incluindo o IP da instância (disponível na página da mesma), o nome de usuário (sempre "ubuntu" para instâncias com esse OS) e a chave SSH (abra o arquivo .key com o bloco de notas -> CTRL + A para selecionar tudo e CTRL + C para copiar -> CTRL + V para colar na aba "Key" no Termius).
 
@@ -156,6 +163,8 @@ Agora resta apenas instalar e configurar o próprio Minecraft Server, mas antes 
 
 Primeiro atualize os pacotes do sistema com: `sudo apt update && sudo apt upgrade -y`
 
+Instale o UFW (Uncomplicated Firewall) com `sudo apt install ufw` e libere as portas 25565 para o Java e ou 19132 para o Bedrock com `sudo ufw allow 25565/tcp` e `sudo ufw allow 19132/udp`. Reinicie o firewall para aplicar as mudanças com `sudo ufw reload`. Verifique o estado do firewall com `sudo systemctl status ufw`. 
+
 Agora instale o Java (somente para o Minecraft Java) -> Pule essa etapa se pretende instalar apenas o Bedrock
 
 > Minecraft 1.17 ou superior → Java 17 (recomendado)
@@ -166,18 +175,18 @@ Agora instale o Java (somente para o Minecraft Java) -> Pule essa etapa se prete
 
 `sudo apt install openjdk-8-jdk`
 
-Instale o UFW (Uncomplicated Firewall) com `sudo apt install ufw` e libere as portas 25565 para o Java e ou 19132 para o Bedrock com `sudo ufw allow 25565/tcp` e `sudo ufw allow 19132/udp`. Reinicie o firewall para aplicar as mudanças com `sudo ufw reload`. Verifique o estado do firewall com `sudo systemctl status ufw`. 
-
 > [!Important]
-> Como o processador disponibilizado pela Oracle não é x86-64 (é arm), o Minecraft Bedrock precisa de uma camada de compatibilidade para funcionar:
+> Como o processador disponibilizado pela Oracle é ARM, não x86-64, o Minecraft Bedrock precisa de uma camada de compatibilidade para funcionar:
 > Instale o Box64: `sudo apt update && sudo apt install box64-rpi4arm64 -y`
 
+A partir de agora, se pretende instalar o [Crafty Controller](https://craftycontrol.com/) para configurar e administrar os servidores, você deve abrir o link e seguir os passos do próprio Crafty. Caso contrário, permaneça no tutorial se siga os próximos passos.
+
 > [!TIP]
-> Para facilitar a instalação manual, criei um script que agiliza o processo: o [EasyMCServer](https://github.com/math1p/EasyMCServer/releases). Ele está disponível para Windows (via .exe ou PyPI) e para Linux (via PyPI).
+> Caso esteja planejando fazer a instalação totalmente manual, sugiro fortemente que utilize o programa que criei pensando em facilitar esse processo: o [EasyMCServer](https://github.com/math1p/EasyMCServer/releases), disponível para Windows (via .exe ou PyPI) e para Linux (via PyPI).
 
-Caso opte pelo PyPI, primeiro atualize o `pip` com `python3 -m pip install --upgrade pip`. Em seguida, instale com `pip install easymcserver` e execute `easymc`. Após a instalação, pule para o passo 4 e siga as instruções.
+Como a instância usa Linux, baixe o pacote através do PyPI. Antes de tudo, atualize o `pip` com `python3 -m pip install --upgrade pip`. Em seguida, instale com `pip install easymcserver` e execute `easymc`. Após a instalação, pule para o passo 4 e siga as instruções.
 
-Se preferir a instalação manual, ignore esta dica e continue seguindo as instruções.
+Se preferir a instalação 100% manual, ignore esta dica e continue seguindo as instruções.
 
 ### 2.3 - Criando os diretórios - (Apenas para instalação manual)
 
