@@ -281,9 +281,6 @@ Executar o servidor:
 
 Caso tenha instalado com o script que sugeri, use o executável gerado. No caso do Crafty, tudo está disponível no painel web.
 
-## Contato
-
-- Email: matheuspestana@outlook.com.br
 
 
 
